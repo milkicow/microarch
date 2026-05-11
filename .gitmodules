@@ -1,0 +1,9 @@
+[submodule "hw1/task3/gem5"]
+	path = hw1/task3/gem5
+	url = https://github.com/milkicow/gem5.git
+	branch = milkicow/arm_neoverse_v2_monolite_iq
+[submodule "gem5"]
+	branch = milkicow/arm_neoverse_v2_monolite_iq
+[submodule "hw1/task3/gapbs"]
+	path = hw1/task3/gapbs
+	url = https://github.com/sbeamer/gapbs.git
