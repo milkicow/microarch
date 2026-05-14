@@ -70,3 +70,18 @@
 ---
 
 ## Analysis
+
+On monolithic instruction queue compared to partitioned:
+
+- `numIssuedDist::0` is higher: more cycles where no instructions are sent to execution units at all
+- `numIssuedDist::mean` is lower: on average fewer instructions issue per cycle
+
+This happens because in a single large queue all instruction types compete for the same issue slots. Each instruction type requires its specific FU — loads need load units, integers need ALUs, etc. When multiple long-latency operations (e.g. a load with cache miss and a multiply) are executing simultaneously, instructions of different types are all waiting for their operands at once. So no instruction ready — producing a zero-issue cycle. With partitioned IQs each type has its own independent issue slot, so stall in one type does not affect others — the probability of a fully empty cycle is much lower.
+
+The extra zero-issue cycles trigger a stall cascade:
+
+```
+slower issue →
+  instructions accumulate in the ROB (>20* more ROB-full events) →
+        all front-end stalls
+```
