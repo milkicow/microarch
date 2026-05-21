@@ -24,7 +24,7 @@ where:
 
 Assume a linear dependency between voltage and frequency:
 
-$f = kU + b$
+$f = kU + b, U \ge U_{min}$
 
 Boundary conditions:
 
@@ -49,9 +49,19 @@ $f = U - 0.2$
 
 $U = f + 0.2$
 
-Frequency range:
+Finally:
 
-$f \in [0.8, 1.8]$
+$
+\begin{cases}
+U = U_{min}, & f \leq 0.8 \\
+U = f + 0.2, & f > 0.8
+\end{cases}
+$
+
+Where
+
+$U_{min} = 1$
+
 
 ---
 
@@ -59,7 +69,7 @@ $f \in [0.8, 1.8]$
 
 Substitute:
 
-$U = f + 0.2$
+$U = max(f + 0.2, U_{min})$
 
 into:
 
@@ -74,9 +84,14 @@ Substitute and normalize: $Power = 1$ when $Perf = 1$, $C = 1$
 
 Therefore:
 
-$$Power_{Eff}(Perf)=\frac{Perf(Perf + 0.2)^2}{1.44}$$
+$$Power_{Eff}(Perf) = \begin{cases}
+    \dfrac{Perf}{1.44}, & Perf \leq 0.8 \\[8pt]
+    \dfrac{Perf(Perf + 0.2)^2}{1.44}, & Perf > 0.8
+\end{cases}$$
 
-$Perf \in [0.8, 1.8]$
+
+
+
 
 ---
 
@@ -89,9 +104,11 @@ For performance cores:
 
 Therefore for normalized formula:
 
-$$Power_{Perf}(Perf)=\frac{4 \cdot \frac{Perf}{2} \cdot \left(\frac{Perf}{2}+0.2\right)^2}{1.44}$$
-
-$Perf \in [1.6, 3.6]$
+$$Power_{Perf}(Perf) = \begin{cases}
+    \dfrac{2 * Perf}{1.44}, & Perf \leq 1.6 \\[8pt]
+    \dfrac{4 \cdot \dfrac{Perf}{2} \cdot \left(\dfrac{Perf}{2}+0.2\right)^2}{1.44}, & Perf > 1.6 \\[8pt]
+\end{cases}
+$$
 
 ---
 
