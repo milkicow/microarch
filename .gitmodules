@@ -7,3 +7,6 @@
 [submodule "hw1/task3/gapbs"]
 	path = hw1/task3/gapbs
 	url = https://github.com/sbeamer/gapbs.git
+[submodule "hw2/ChampSim"]
+	path = hw2/ChampSim
+	url = https://github.com/milkicow/ChampSim
