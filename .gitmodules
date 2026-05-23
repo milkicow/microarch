@@ -10,3 +10,6 @@
 [submodule "hw2/ChampSim"]
 	path = hw2/ChampSim
 	url = https://github.com/milkicow/ChampSim
+[submodule "hw3/ChampSim"]
+	path = hw3/ChampSim
+	url = https://github.com/milkicow/ChampSim
